@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EntrepriseController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('entreprises', EntrepriseController::class);
 Route::resource('contacts', ContactController::class);
+Route::resource('commentaires', CommentaireController::class);
 
 // routes pour les entreprises
 // Route::get('entreprises', 'EntrepriseControler@index')->name('entreprises.index');

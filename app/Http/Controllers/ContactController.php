@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaires;
 use App\Models\Contact;
 use App\Models\Entreprise;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class ContactController extends Controller
         foreach($contacts as $contact){
            $contact['entreprises'] = Entreprise::find($contact->entreprise_id);
         }
+       
         return view('contacts.index', compact('contacts'));
     }
 
@@ -55,8 +57,9 @@ class ContactController extends Controller
         $contact->fonction = $validatedData['fonction'];
         $contact->telephone = $validatedData['telephone'];
         $contact->email = $validatedData['email'];
-        $contact->entreprises = Entreprise::find($contact->entreprise_id);
+        //$contact->entreprises = Entreprise::find($contact->entreprise_id);
         $contact->entreprise_id = $validatedData['entreprise_id'];
+
         $contact->save();
         return redirect()->route('contacts.index')->with('success', 'Contact créé avec succès!');
     }
@@ -70,9 +73,11 @@ class ContactController extends Controller
     public function show($id)
     {
         $contact = Contact::with('entreprises')->find($id);
+        $commentaires = Commentaires::with('contact_id')->find($id);
 
         $contact->entreprises = Entreprise::find($contact->entreprise_id);
-        //dump($contact);
+        $contact->commentaires = Commentaires::find($contact->$id);
+        dump($commentaires);
         return view('contacts.show', compact('contact'));
     }
 
@@ -105,6 +110,16 @@ class ContactController extends Controller
         $contact->telephone = $request->telephone;
         $contact->email = $request->email;
         $contact->entreprise_id = $request->entreprise_id;
+
+        $comments = [];
+        $comment = [        
+            'commentaire' => $request->comment,
+            'contact_id' => $contact->id,
+            'date' => now()
+        ];
+        array_push($comments, $comment);
+        $contact->commentaires = $comments;
+
         $contact->save();
         return redirect()->route('contacts.index');
     }
