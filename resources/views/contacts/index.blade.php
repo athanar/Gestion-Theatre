@@ -33,6 +33,7 @@
                         <td>{{ $contact->telephone }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->entreprises->raison_sociale}}</td>
+                        
                         <td>
                             <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-primary btn-sm">Afficher</a>
                             <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Modifier</a>

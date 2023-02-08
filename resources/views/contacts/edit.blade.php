@@ -38,6 +38,10 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="comment">Commentaire</label>
+                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+            </div>
             <div class="text-center">
 				<!--input type="hidden" name="hidden_id" value="{{ $contact->id }}" /-->
 				<input type="submit" class="btn btn-primary" value="Valider les modifications" />

@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col col-md-6"> <a href="{{ route('entreprises.index') }}" class="btn btn-primary btn-sm">Entreprises</a></div>
+                    <div class="col col-md-6"> <a href="{{ route('entreprises.index') }}" class="btn btn-primary btn-sm">Entreprise / Clients</a></div>
                     <div class="col col-md-6"><a href="{{ route('contacts.index') }}" class="btn btn-primary btn-sm">Contacts</a></div>
                 </div>
             </div>
