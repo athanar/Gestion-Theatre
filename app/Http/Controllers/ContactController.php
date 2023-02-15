@@ -61,6 +61,14 @@ class ContactController extends Controller
         $contact->entreprise_id = $validatedData['entreprise_id'];
 
         $contact->save();
+
+        //Enregistrement du commentaire
+        $commentaire = new Commentaires();
+        $commentaire->commentraire = $request->comment;
+        $commentaire->contact_id = $contact->id;
+        $commentaire->date = now();
+        $contact->commentaires()->save($commentaire);
+         
         return redirect()->route('contacts.index')->with('success', 'Contact créé avec succès!');
     }
 
@@ -73,11 +81,7 @@ class ContactController extends Controller
     public function show($id)
     {
         $contact = Contact::with('entreprises')->find($id);
-        $commentaires = Commentaires::with('contact_id')->find($id);
-
         $contact->entreprises = Entreprise::find($contact->entreprise_id);
-        $contact->commentaires = Commentaires::find($contact->$id);
-        dump($commentaires);
         return view('contacts.show', compact('contact'));
     }
 
@@ -118,7 +122,10 @@ class ContactController extends Controller
             'date' => now()
         ];
         array_push($comments, $comment);
-        $contact->commentaires = $comments;
+        //Add the new comment to the existing comments
+        $entreprises = Entreprise::all();
+        Commentaires::create($comment);
+        //$contact->commentaires = $comments;
 
         $contact->save();
         return redirect()->route('contacts.index');

@@ -17,7 +17,7 @@ class Commentaires extends Model
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
             $table->string('commentaire');
-            $table->string('contact_id');
+            $table->unsignedBigInteger('contact_id');
             $table->timestamps();
         });
     }

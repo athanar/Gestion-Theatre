@@ -9,7 +9,7 @@ class Contact extends Model
 {
     protected $table = 'contacts';
 
-    protected $fillable = ['nom', 'prenom', 'fonction', 'telephone', 'email', 'entreprise_id'];
+    protected $fillable = ['nom', 'prenom', 'fonction', 'telephone', 'email', 'entreprise_id','commentaire_id'];
     protected $guarded = ['id'];
     public $timestamps = true;
 
@@ -22,6 +22,6 @@ class Contact extends Model
 
     public function commentaires()
     {
-        return $this->hasMany(Commentaire::class);
+        return $this->hasMany(Commentaires::class);
     }
 }
