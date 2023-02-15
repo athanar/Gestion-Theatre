@@ -22,9 +22,14 @@ class CommentaireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Array $comments)
     {
-        //
+        //Create new comment
+        $commentaire = new Commentaires();
+        $commentaire->commentaire = $comments['body'];
+        $commentaire->contact_id = $comments['contact_id'];
+        $commentaire->save();
+        
     }
 
     /**

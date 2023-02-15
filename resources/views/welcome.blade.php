@@ -22,6 +22,12 @@
         </div>
         
     </div>
+    <div class="container mt-5">
+        <h4><br/><br/>ChangeLog</h4>
+        <ul>
+            <li>15/02/23 : Ajout des commentaires pour un contact.</li>
+        </ul>
+    <div>
     
 </body>
 </html>

@@ -39,21 +39,16 @@
 		</div>
 
 		<h4>Commentaires</h4>
-		
-		{{ $contact  }}
-		
-		<hr />
-		<h4>Ajouter un commentaire</h4>
-		<form method="post" action="{{ route('commentaires.store'   ) }}">
-			@csrf
-			<div class="form-group">
-				<textarea class="form-control" name="body"></textarea>
-				<input type="hidden" name="contact_id" value="{{ $contact->id }}" />
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-success" value="Ajouter un commentaire" />
-			</div>
-		</form>
+
+		@if ($contact->commentaires->count() > 0)
+			<ul>
+				@foreach ($contact->commentaires as $commentaire)
+					<li>({{ $commentaire->created_at->format('d/m/Y') }}) - {{ $commentaire->commentaire }} </li>
+				@endforeach
+			</ul>
+		@else
+			<p>Aucun commentaire pour ce contact.</p>
+		@endif
     </div>
 </div>
 @endsection('content')
