@@ -4,51 +4,82 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-6"><b>Détail du contact</b></div>
+			<div class="col col-md-6"><b>Détail de l'intervenant</b> {{ $intervenant->nom }} {{ $intervenant->prenom }}</div>
 			<div class="col col-md-6">
-				<a href="{{ route('contacts.index') }}" class="btn btn-primary btn-sm float-end">Voir Tout</a>
+				<a href="{{ route('intervenants.index') }}" class="btn btn-primary btn-sm float-end">Voir Tout</a>
 			</div>
 		</div>
 	</div>
 
 	<div class="card-body">
-        <h1>{{ $contact->nom }} {{ $contact->prenom }} </h1>
-        <div class="row mb-3">
-			<label class="col-sm-2 col-label-form"><b>Fonction</b></label>
+
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Adresse</b></label>
 			<div class="col-sm-10">
-				{{ $contact->fonction}}
+				{{ $intervenant->adresse}}
 			</div>
 		</div>
+
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Date de naissance</b></label>
+			<div class="col-sm-10">
+				{{ $intervenant->date_naissance}}
+			</div>
+		</div>
+       
         <div class="row mb-3">
 			<label class="col-sm-2 col-label-form"><b>Télephone</b></label>
 			<div class="col-sm-10">
-				{{ $contact->telephone}}
+				{{ $intervenant->telephone}}
 			</div>
 		</div>
+
         <div class="row mb-3">
 			<label class="col-sm-2 col-label-form"><b>Email</b></label>
 			<div class="col-sm-10">
-				{{ $contact->email}}
+				{{ $intervenant->email}}
 			</div>
 		</div>
-        <div class="row mb-3">
-			<label class="col-sm-2 col-label-form"><b>Entreprise</b></label>
+
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Numéro Sécu</b></label>
 			<div class="col-sm-10">
-				<a href="{{ route('entreprises.show', $contact->entreprises->id) }}" class="btn btn-primary btn-sm">{{ $contact->entreprises->raison_sociale}}</a>
+				{{ $intervenant->num_secu}}
 			</div>
 		</div>
 
-		<h4>Commentaires</h4>
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Numéro Congé Spectacle</b></label>
+			<div class="col-sm-10">
+				{{ $intervenant->num_conges_spectacles}}
+			</div>
+		</div>
 
-		@if ($contact->commentaires->count() > 0)
-			<ul>
-				@foreach ($contact->commentaires as $commentaire)
-					<li>({{ $commentaire->created_at->format('d/m/Y') }}) - {{ $commentaire->commentaire }} </li>
-				@endforeach
-			</ul>
-		@else
-			<p>Aucun commentaire pour ce contact.</p>
-		@endif
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Statut</b></label>
+			<div class="col-sm-10">
+				{{ $intervenant->statut}} - {{ $intervenant->statut_choix}}
+			</div>
+		</div>
+
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Langues parlées</b></label>
+			<div class="col-sm-10">
+				{{ $intervenant->langues}}
+			</div>
+		</div>
+
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Commentaires</b></label>
+			<div class="col-sm-10">
+				{{ $intervenant->commentaires}}
+			</div>
+		</div>
+		
+		
+
+		
+		
     </div>
 </div>
 @endsection('content')

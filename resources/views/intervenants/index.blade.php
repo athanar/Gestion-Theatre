@@ -15,6 +15,12 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Statut</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Action</th>
                     
                 </tr>
                 
@@ -24,10 +30,9 @@
                     <tr>
                         <td>{{ $intervenant->nom }}</td>
                         <td>{{ $intervenant->prenom }}</td>
-                        <td>{{ $intervenant->fonction }}</td>
+                        <td>{{ $intervenant->statut }}</td>
                         <td>{{ $intervenant->telephone }}</td>
                         <td>{{ $intervenant->email }}</td>
-                        <td>{{ $intervenant->entreprises->raison_sociale}}</td>
                         
                         <td>
                             <a href="{{ route('intervenants.show', $intervenant->id) }}" class="btn btn-primary btn-sm">Afficher</a>

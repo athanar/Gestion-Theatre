@@ -9,13 +9,15 @@ class Intervenants extends Model
 {
     use HasFactory;
 
+    protected $table = 'intervenants';
+
     protected $fillable = [
         'nom',
         'prenom',
         'adresse',
         'date_naissance',
         'telephone',
-        'mail',
+        'email',
         'num_secu',
         'num_conges_spectacles',
         'statut',
@@ -27,7 +29,7 @@ class Intervenants extends Model
         'realisateur_monteur',
         'photographe',
         'musique',
-        'langue',
+        'langues',
         'commentaire',
         'photo',
     ];

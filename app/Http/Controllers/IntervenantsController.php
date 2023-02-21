@@ -36,13 +36,13 @@ class IntervenantsController extends Controller
      */
     public function store(Request $request)
     {
-        $intervenant = new IntervenantsController();
+        $intervenant = new Intervenants();
         $intervenant->nom = $request->input('nom');
         $intervenant->prenom = $request->input('prenom');
         $intervenant->adresse = $request->input('adresse');
         $intervenant->date_naissance = $request->input('date_naissance');
         $intervenant->telephone = $request->input('telephone');
-        $intervenant->mail = $request->input('mail');
+        $intervenant->email = $request->input('email');
         $intervenant->num_secu = $request->input('num_secu');
         $intervenant->num_conges_spectacles = $request->input('num_conges_spectacles');
         $intervenant->statut = $request->input('statut');
@@ -54,7 +54,7 @@ class IntervenantsController extends Controller
         $intervenant->realisateur_monteur = $request->input('realisateur_monteur') ?? false;
         $intervenant->photographe = $request->input('photographe') ?? false;
         $intervenant->musique = $request->input('musique') ?? false;
-        $intervenant->langue = implode(',', $request->input('langue')) ?? '';
+        $intervenant->langues = implode(',', $request->input('langues')) ?? '';
         $intervenant->commentaire = $request->input('commentaire');
         
         if ($request->hasFile('photo')) {
@@ -63,7 +63,7 @@ class IntervenantsController extends Controller
             $path = $photo->storeAs('public/photos', $filename);
             $intervenant->photo = $filename;
         }
-        
+
         $intervenant->save();
 
         return redirect()->route('intervenants.index')->with('success', 'Intervenant ajouté avec succès.');
