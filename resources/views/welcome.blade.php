@@ -25,7 +25,7 @@
             <div class="card-header">
                 <div class="row">           
                     <div class="col col-md-6"><a href="{{ route('contacts.index') }}" class="btn btn-primary btn-sm">Contacts</a></div>
-                    <div class="col col-md-6"><a href="" class="btn btn-primary btn-sm">Projets</a></div>
+                    <div class="col col-md-6"><a href="{{ route('projets.index') }}" class="btn btn-primary btn-sm">Projets</a></div>
                 </div>
             </div>
         </div>
@@ -34,6 +34,7 @@
     <div class="container mt-5">
         <h4><br/><br/>ChangeLog</h4>
         <ul>
+            <li>08/03/23 : Page création/vue projets </li>
             <li>21/02/23 : Page création/vue intervenants </li>
             <li>18/02/23 : Ajout Model Intervenants + Page création intervenants</li>
             <li>15/02/23 : Ajout des commentaires pour un contact.</li>

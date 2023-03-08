@@ -64,7 +64,7 @@ class ContactController extends Controller
 
         //Enregistrement du commentaire
         $commentaire = new Commentaires();
-        $commentaire->commentraire = $request->comment;
+        $commentaire->commentaire = $request->comment;
         $commentaire->contact_id = $contact->id;
         $commentaire->date = now();
         $contact->commentaires()->save($commentaire);
