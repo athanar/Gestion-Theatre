@@ -34,6 +34,7 @@
     <div class="container mt-5">
         <h4><br/><br/>ChangeLog</h4>
         <ul>
+            <li>12/03/23 : Page projets : ajout intervenants</li>
             <li>08/03/23 : Page création/vue projets </li>
             <li>21/02/23 : Page création/vue intervenants </li>
             <li>18/02/23 : Ajout Model Intervenants + Page création intervenants</li>

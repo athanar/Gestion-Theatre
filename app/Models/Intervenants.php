@@ -44,4 +44,8 @@ class Intervenants extends Model
         'photographe' => 'boolean',
         'musique' => 'boolean',
     ];
+
+    public function projets() {
+        return $this->belongsToMany(Projet::class);
+    }
 }

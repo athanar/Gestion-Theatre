@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Intervenants;
 use App\Models\Projet;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class ProjetsController extends Controller
     public function create()
     {
         $contacts = Contact::all();
-        return view('projets.create',compact('contacts'));
+        $intervenants = Intervenants::all();
+        return view('projets.create',compact('contacts'),compact('intervenants'));
     }
 
     /**
@@ -39,6 +41,19 @@ class ProjetsController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'nature' => 'required|string|max:255',
+            'theme' => 'required|string|max:255',
+            'prix_par_intervenants' => 'required',
+            'date_projet' => 'required',
+            'lieu' => 'required',
+            'prix_projet' => 'required',
+            'description' => 'required',
+            'contact_id' => 'required',
+            'url_gestion_administrative' => 'required',
+            'intervenants' => 'required'
+        ]);
+
         $projet = new Projet();
         $projet->nature = $request->nature;
         $projet->theme = $request->theme;
@@ -51,6 +66,9 @@ class ProjetsController extends Controller
         $projet->url_gestion_administrative = $request->url_gestion_administrative;
         
         $projet->save();
+
+        $projet->intervenants()->attach($request->input('intervenants'));
+        
         return redirect()->route('projets.index');
     }
 
@@ -60,9 +78,11 @@ class ProjetsController extends Controller
      * @param  \App\Models\Projet  $projet
      * @return \Illuminate\Http\Response
      */
-    public function show(Projet $projet)
+    public function show($id)
     {
-        return view('projets.show', compact('projet'));
+        $projet = Projet::findOrFail($id);
+        $intervenants = $projet->intervenants;
+        return view('projets.show', compact('projet','intervenants'));
     }
 
     /**
@@ -71,9 +91,11 @@ class ProjetsController extends Controller
      * @param  \App\Models\Projet  $projet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Projet $projet)
+    public function edit($id)
     {
-        return view('projets.sedit', compact('projet'));
+        $projet = Projet::findOrFail($id);
+        $intervenants = $projet->intervenants;
+        return view('projets.edit', compact('projet','intervenants'));
     }
 
     /**
@@ -106,11 +128,12 @@ class ProjetsController extends Controller
      * @param  \App\Models\Projet  $projet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projet $projet)
+    public function destroy( $id)
     {
-        $$projet->delete();
+        $projet = Projet::find($id);
+        $projet->delete();
 
-        return redirect()->route('projets.index')->with('success', 'Le proje a été effacé.');
+        return redirect()->route('projets.index')->with('success', 'Le projet a été effacé.');
  
     }
 }

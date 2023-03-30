@@ -146,4 +146,16 @@ class IntervenantsController extends Controller
         $intervenant->delete();
         return redirect()->route('intervenants.index')->with('success', 'Intervenant supprimé avec succès.');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->q;
+       // $intervenants = Intervenants::with('nom', 'LIKE', "%$search%")->get();
+        $intervenants = Intervenants::where('nom', 'like', '%'.$search.'%')
+                                    ->orWhere('prenom', 'like', '%'.$search.'%')
+                                    ->get();
+        
+        return response()->json($intervenants);
+    }
+
 }

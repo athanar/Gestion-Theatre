@@ -9,6 +9,8 @@ class Projet extends Model
 {
     use HasFactory;
 
+    protected $table = 'projets';
+
     protected $fillable = [
         'nature',
         'theme',
@@ -20,4 +22,8 @@ class Projet extends Model
         'contact_id',
         'url_gestion_administrative',
     ];
+
+    public function intervenants() {
+        return $this->belongsToMany(Intervenants::class);
+    }
 }

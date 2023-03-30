@@ -1,0 +1,71 @@
+@extends('master')
+
+@section('content')
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<div class="col col-md-6"><b>Détail du projet</b></div>
+			<div class="col col-md-6">
+				<a href="{{ route('projets.index') }}" class="btn btn-primary btn-sm float-end">Voir Tout</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-body">
+        <div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Nature</b></label>
+			<div class="col-sm-10">
+				{{ $projet->nature}}
+			</div>
+		</div>
+        <div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Thème</b></label>
+			<div class="col-sm-10">
+				{{ $projet->theme}}
+			</div>
+		</div>
+        <div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Date</b></label>
+			<div class="col-sm-10">
+				{{ $projet->date_projet}}
+			</div>
+		</div>
+        <div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Lieu</b></label>
+			<div class="col-sm-10">
+                {{ $projet->lieu}}
+			</div>
+		</div>
+        <div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Prix de vente</b></label>
+			<div class="col-sm-10">
+                {{ $projet->prix_projet}}
+			</div>
+		</div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-label-form"><b>URL Gestion Administrative</b></label>
+            <div class="col-sm-10">
+                {{ $projet->url_gestion_administrative}}
+            </div>
+        </div>
+        <div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Description</b></label>
+			<div class="col-sm-10">
+                {{ $projet->description}}
+			</div>
+		</div>
+
+		<h4>Intervenants</h4>
+
+		@if ($projet->intervenants != null && $projet->intervenants->count() > 0)
+			<ul>
+				@foreach ($projet->intervenants as $intervenant)
+					<li><a href="{{ route('intervenants.show', $intervenant->id) }}">{{ $intervenant->nom }}  {{ $intervenant->prenom }}</a> </li>
+				@endforeach
+			</ul>
+		@else
+			<p>Aucun intervenant pour ce projet.</p>
+		@endif
+    </div>
+</div>
+@endsection('content')

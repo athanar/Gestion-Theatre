@@ -96,6 +96,45 @@
                     <input type="text" class="form-control" id="url_gestion_administrative" name="url_gestion_administrative" required>
                 </div>
             </div>
+
+
+            <!-- Blade view code -->
+            <div>
+                <label for="intervenants">Choisissez vos intervenants :</label>
+                <div class="col-sm-10">
+                    
+                    <select class="form-control select2" id="intervenants" name="intervenants" multiple="multiple">
+                        @foreach ($intervenants as $intervenant)
+                        <option value="{{ $intervenant->id }}">{{ $intervenant->nom }} {{ $intervenant->prenom }}</option>
+                        @endforeach
+                    </select>
+                    
+                    <script>
+                        $(document).ready(function() {
+                        $('.select2').select2({
+                            placeholder: "Rechercher un intervenant",
+                            allowClear: true,
+                            minimumInputLength: 1,
+                            ajax: {
+                            url: "{{ route('intervenants.search') }}",s
+                            dataType: 'json',
+                            delay: 250,
+                            processResults: function(data) {
+                                return {
+                                results: $.map(data, function(intervenant) {
+                                    return { id: intervenant.id, text: intervenant.nom + ' ' + intervenant.prenom };
+                                })
+                                };
+                            },
+                            cache: true
+                            }
+                        });
+                        });
+                    </script>
+                </div>
+            </div>
+              
+
             
             <div class="text-center">
 				<input type="submit" class="btn btn-primary" value="Ajouter" />
@@ -104,3 +143,4 @@
     </div>
 </div>
 @endsection('content')
+

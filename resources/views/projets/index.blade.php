@@ -2,6 +2,12 @@
  
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="card">
 	<div class="card-header">
 		<div class="row">
@@ -15,25 +21,20 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Fonction</th>
-                    <th>Téléphone</th>
-                    <th>Email</th>
-                    <th>Entreprise</th>
+                    <th>Nature</th>
+                    <th>Thème</th>
+                    <th>Date</th>
+                    <th>Lieu</th>
                 </tr>
                 
             </thead>
             <tbody>
-                @foreach($projets as $projets)
+                @foreach($projets as $projet)
                     <tr>
-                        <td>{{ $projet->nom }}</td>
-                        <td>{{ $projet->prenom }}</td>
-                        <td>{{ $projet->fonction }}</td>
-                        <td>{{ $projet->telephone }}</td>
-                        <td>{{ $projet->email }}</td>
-                        <td>{{ $projet->entreprises->raison_sociale}}</td>
-                        
+                        <td>{{ $projet->nature }}</td>
+                        <td>{{ $projet->theme }}</td>
+                        <td>{{ $projet->date_projet }}</td>
+                        <td>{{ $projet->lieu }}</td> 
                         <td>
                             <a href="{{ route('projets.show', $projet->id) }}" class="btn btn-primary btn-sm">Afficher</a>
                             <a href="{{ route('projets.edit', $projet->id) }}" class="btn btn-warning btn-sm">Modifier</a>
