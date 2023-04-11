@@ -34,6 +34,7 @@
     <div class="container mt-5">
         <h4><br/><br/>ChangeLog</h4>
         <ul>
+            <li>11/04/23 : Contacts : Ajout/Suppresion/Modification</li>
             <li>12/03/23 : Page projets : ajout intervenants</li>
             <li>08/03/23 : Page création/vue projets </li>
             <li>21/02/23 : Page création/vue intervenants </li>
@@ -41,6 +42,15 @@
             <li>15/02/23 : Ajout des commentaires pour un contact.</li>
         </ul>
     <div>
+
+        RAF : 
+        <ul>
+            <li>Liste des projets réalisés avec l’entreprise (lien cliquable)</li>
+            <li>Style global</li>
+            <li>Bug Modification Intervenants</li>
+            <li>Intervenants pièces jointes</li>
+            <li>Sur page de garde, rajouter fonction recherche par champ sémantique </li>
+        </ul>
     
 </body>
 </html>
