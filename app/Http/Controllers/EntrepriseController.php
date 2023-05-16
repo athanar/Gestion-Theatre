@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entreprise;
+use App\Models\Projet;
 use Illuminate\Http\Request;
 
 class EntrepriseController extends Controller
@@ -54,7 +55,7 @@ class EntrepriseController extends Controller
      */
     public function show($id)
     {
-        $entreprise = Entreprise::with('contacts')->find($id);
+        $entreprise = Entreprise::with(['contacts','projets'])->find($id);
         return view('entreprises.show', compact('entreprise'));
     }
 
@@ -100,5 +101,23 @@ class EntrepriseController extends Controller
         $entreprise = Entreprise::find($id);
         $entreprise->delete();
         return redirect()->route('entreprises.index');
+    }
+
+    public function showProjetSelection($id)
+    {
+        $entreprise = Entreprise::findOrFail($id);
+        $projets = Projet::whereNull('entreprise_id')->get();
+        return view('entreprises.projet_selection', compact('entreprise', 'projets'));
+    }
+
+    public function associateProjets(Request $request, $id)
+    {
+        $entreprise = Entreprise::findOrFail($id);
+        $projets_ids = $request->input('projets');
+
+        // Associer les projets sélectionnés à l'entreprise
+        Projet::whereIn('id', $projets_ids)->update(['entreprise_id' => $entreprise->id]);
+
+        return redirect()->route('entreprise.show', $entreprise->id);
     }
 }

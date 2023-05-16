@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::with('entreprises')->get();
+        $contacts = Contact::with('entreprise')->get();
         foreach($contacts as $contact){
            $contact['entreprises'] = Entreprise::find($contact->entreprise_id);
         }
@@ -80,7 +80,7 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        $contact = Contact::with('entreprises')->find($id);
+        $contact = Contact::with('entreprise')->find($id);
         $contact->entreprises = Entreprise::find($contact->entreprise_id);
         return view('contacts.show', compact('contact'));
     }
@@ -93,7 +93,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contact::with('entreprises')->find($id);
+        $contact = Contact::with('entreprise')->find($id);
         $entreprises = Entreprise::all();
         return view('contacts.edit', compact('contact'),compact('entreprises'));
     }

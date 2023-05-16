@@ -18,4 +18,9 @@ class Entreprise extends Model
     {
         return $this->hasMany(Contact::class);
     }
+
+    public function projets()
+    {
+        return $this->hasMany(Projet::class);
+    }
 }

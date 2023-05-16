@@ -107,19 +107,13 @@ class IntervenantsController extends Controller
         $intervenant->adresse = $request->input('adresse');
         $intervenant->date_naissance = $request->input('date_naissance');
         $intervenant->telephone = $request->input('telephone');
-        $intervenant->mail = $request->input('mail');
+        $intervenant->email = $request->input('email');
         $intervenant->num_secu = $request->input('num_secu');
         $intervenant->num_conges_spectacles = $request->input('num_conges_spectacles');
         $intervenant->statut = $request->input('statut');
-        $intervenant->scenariste = $request->input('scenariste') ?? false;
-        $intervenant->comedien = $request->input('comedien') ?? false;
-        $intervenant->formateur = $request->input('formateur') ?? false;
-        $intervenant->impro = $request->input('impro') ?? false;
-        $intervenant->chanteur = $request->input('chanteur') ?? false;
-        $intervenant->realisateur_monteur = $request->input('realisateur_monteur') ?? false;
-        $intervenant->photographe = $request->input('photographe') ?? false;
-        $intervenant->musique = $request->input('musique') ?? false;
-        $intervenant->langue = implode(',', $request->input('langue')) ?? '';
+        $intervenant->statut_choix = implode(',', $request->input('statut_choix')) ?? null;
+        $intervenant->langues = implode(',', $request->input('langues')) ?? null;
+
         $intervenant->commentaire = $request->input('commentaire');
         
         if ($request->hasFile('photo')) {

@@ -26,6 +26,10 @@ Route::resource('commentaires', CommentaireController::class);
 Route::resource('intervenants', IntervenantsController::class);
 Route::resource('projets', ProjetsController::class);
 
+Route::get('entreprise/{entreprise}/projets/selection', 'App\Http\Controllers\EntrepriseController@showProjetSelection')->name('entreprise.showProjetSelection');
+Route::post('entreprise/{entreprise}/projets/associate', 'App\Http\Controllers\EntrepriseController@associateProjets')->name('entreprise.associateProjets');
+
+
 
 Route::get('/', function () {
     return view('welcome');

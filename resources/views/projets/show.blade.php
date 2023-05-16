@@ -4,7 +4,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-6"><b>Détail du projet</b></div>
+			<div class="col col-md-6"><b>Détail du projet {{ $projet->nom_du_projet}} </b></div>
 			<div class="col col-md-6">
 				<a href="{{ route('projets.index') }}" class="btn btn-primary btn-sm float-end">Voir Tout</a>
 			</div>
@@ -66,6 +66,30 @@
 		@else
 			<p>Aucun intervenant pour ce projet.</p>
 		@endif
+
+		<p>Nom du contact : 
+			@if($projet->contact)
+				<a href="{{ route('contacts.show', ['contact' => $projet->contact->id]) }}">
+					{{ $projet->contact->nom }} {{ $projet->contact->prenom }}
+				</a>
+			@else
+				Non défini
+			@endif
+		</p>
+		<p>Coordonnées de l'entreprise : 
+			
+			@if($projet->contact && $projet->contact->entreprise)
+    <p>ID de l'entreprise: {{ $projet->contact->entreprise->id }}</p>
+    <a href="{{ route('entreprises.show', ['entreprise' => $projet->contact->entreprise->id]) }}">
+        {{ $projet->contact->entreprise->raison_sociale }}
+    </a>
+@else
+    Non défini
+@endif
+
+		</p>		
+		
+		
     </div>
 </div>
 @endsection('content')

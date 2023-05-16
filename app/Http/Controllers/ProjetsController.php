@@ -80,7 +80,7 @@ class ProjetsController extends Controller
      */
     public function show($id)
     {
-        $projet = Projet::findOrFail($id);
+        $projet = Projet::with('contact')->find($id);
         $intervenants = $projet->intervenants;
         return view('projets.show', compact('projet','intervenants'));
     }
@@ -93,8 +93,8 @@ class ProjetsController extends Controller
      */
     public function edit($id)
     {
-        $projet = Projet::findOrFail($id);
-        $intervenants = $projet->intervenants;
+        $projet = Projet::with('contact.entreprise')->findOrFail($id);
+        $intervenants = Intervenants::all();
         return view('projets.edit', compact('projet','intervenants'));
     }
 
@@ -107,6 +107,7 @@ class ProjetsController extends Controller
      */
     public function update(Request $request, Projet $projet)
     {
+
         $projet = Projet::find($request->hidden_id);
         $projet->nature = $request->nature;
         $projet->theme = $request->theme;
@@ -136,4 +137,5 @@ class ProjetsController extends Controller
         return redirect()->route('projets.index')->with('success', 'Le projet a été effacé.');
  
     }
+
 }

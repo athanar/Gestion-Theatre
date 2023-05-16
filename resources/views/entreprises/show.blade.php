@@ -73,6 +73,19 @@
                 </tbody>
             </table>
         </div>
+
+        <h2>Projets</h2>
+        
+        <a href="{{ route('entreprise.showProjetSelection', $entreprise->id) }}">Sélectionner des projets à associer</a>
+        
+        <ul>
+            @forelse($entreprise->projets as $projet)
+                <li>{{ $projet->nom }}</li>
+            @empty
+                <li>Aucun projet</li>
+            @endforelse
+        </ul>
+        
     </div>
 </div>
 @endsection('content')
