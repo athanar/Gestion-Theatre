@@ -34,7 +34,8 @@
     <div class="container mt-5">
         <h4><br/><br/>ChangeLog</h4>
         <ul>
-            <li>11/04/23 : Association projet<>clients<>Entreprise</li>
+            <li>19/05/23 : Ajout lien entreprise dans la page projet</li>
+            <li>11/05/23 : Association projet<>clients<>Entreprise</li>
             <li>11/04/23 : Contacts : Ajout/Suppresion/Modification</li>
             <li>12/03/23 : Page projets : ajout intervenants</li>
             <li>08/03/23 : Page création/vue projets </li>
@@ -46,7 +47,6 @@
 
         RAF : 
         <ul>
-            <li>Coordonnées de l'entreprise dans la fiche Projet</li>
             <li>Style global</li>
             <li>Intervenants pièces jointes</li>
             <li>Sur page de garde, rajouter fonction recherche par champ sémantique </li>
