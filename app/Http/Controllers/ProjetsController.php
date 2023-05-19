@@ -80,7 +80,8 @@ class ProjetsController extends Controller
      */
     public function show($id)
     {
-        $projet = Projet::with('contact')->find($id);
+        $projet = Projet::with('contact.entreprise')->find($id);
+
         $intervenants = $projet->intervenants;
         return view('projets.show', compact('projet','intervenants'));
     }
@@ -93,7 +94,12 @@ class ProjetsController extends Controller
      */
     public function edit($id)
     {
-        $projet = Projet::with('contact.entreprise')->findOrFail($id);
+        $projet = Projet::find($id);
+        $projet->load('contact.entreprise'); 
+
+        $contact = $projet->contact;
+        $entreprise = $contact ? $contact->entreprise : null;
+
         $intervenants = Intervenants::all();
         return view('projets.edit', compact('projet','intervenants'));
     }

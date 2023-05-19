@@ -77,12 +77,11 @@
 			@endif
 		</p>
 		<p>Coordonnées de l'entreprise : 
-			
-			@if($projet->contact && $projet->contact->entreprise)
-    <p>ID de l'entreprise: {{ $projet->contact->entreprise->id }}</p>
-    <a href="{{ route('entreprises.show', ['entreprise' => $projet->contact->entreprise->id]) }}">
-        {{ $projet->contact->entreprise->raison_sociale }}
-    </a>
+
+			@if($projet->contact && $projet->contact->entreprise_id)
+			<a href="{{ route('entreprises.show', ['entreprise' => $projet->contact->entreprise_id]) }}">
+				{{ $projet->contact->entreprise_id }} 
+			</a>
 @else
     Non défini
 @endif

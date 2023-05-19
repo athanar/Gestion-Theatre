@@ -38,12 +38,9 @@ class Projet extends Model
     }
     public function show($id)
 {
-    $projet = Projet::find($id);
+    $projet = Projet::with('contact.entreprise')->find($id);
     $contact = $projet->contact;
     $entreprise = $contact ? $contact->entreprise : null;
-
-    // Utilisez dd() pour déboguer
-    dd($entreprise);
 
     $intervenants = $projet->intervenants;
     return view('projets.show', compact('projet','intervenants'));
