@@ -6,7 +6,13 @@
 		<div class="row">
 			<div class="col col-md-6"><b>Détail du projet {{ $projet->nom_du_projet}} </b></div>
 			<div class="col col-md-6">
-				<a href="{{ route('projets.index') }}" class="btn btn-primary btn-sm float-end">Voir Tout</a>
+				<a href="{{ route('projets.index') }}" class="btn btn-primary btn-sm float-end">Revenir à la liste</a>
+				<a href="{{ route('projets.edit', $projet->id) }}" class="btn btn-warning btn-sm">Modifier</a>
+				<form style="display: inline-block" method="POST" action="{{ route('projets.destroy', $projet->id) }}">
+					@csrf
+					@method('DELETE')
+					<button type="submit" class="btn btn-danger">Supprimer</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -77,10 +83,9 @@
 			@endif
 		</p>
 		<p>Coordonnées de l'entreprise : 
-
 			@if($projet->contact && $projet->contact->entreprise_id)
 			<a href="{{ route('entreprises.show', ['entreprise' => $projet->contact->entreprise_id]) }}">
-				{{ $projet->contact->entreprise_id }} 
+				{{$projet->entreprise->raison_sociale}} {{ $projet->contact->entreprise_id }} 
 			</a>
 @else
     Non défini

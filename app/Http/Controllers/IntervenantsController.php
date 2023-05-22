@@ -110,8 +110,7 @@ class IntervenantsController extends Controller
         $intervenant->email = $request->input('email');
         $intervenant->num_secu = $request->input('num_secu');
         $intervenant->num_conges_spectacles = $request->input('num_conges_spectacles');
-        $intervenant->statut = $request->input('statut');
-        $intervenant->statut_choix = implode(',', $request->input('statut_choix')) ?? null;
+        $intervenant->statut = $request->input('statut') ?? null;
         $intervenant->langues = implode(',', $request->input('langues')) ?? null;
 
         $intervenant->commentaire = $request->input('commentaire');
@@ -121,6 +120,13 @@ class IntervenantsController extends Controller
             $filename = $photo->getClientOriginalName();
             $path = $photo->storeAs('public/photos', $filename);
             $intervenant->photo = $filename;
+        }
+
+        if ($request->hasFile('cv')) {
+            $photo = $request->file('cv');
+            $filename = $photo->getClientOriginalName();
+            $path = $photo->storeAs('public/cv', $filename);
+            $intervenant->cv = $filename;
         }
         
         $intervenant->save();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Entreprise;
 use App\Models\Intervenants;
 use App\Models\Projet;
 use GuzzleHttp\Handler\Proxy;
@@ -96,12 +97,13 @@ class ProjetsController extends Controller
     {
         $projet = Projet::find($id);
         $projet->load('contact.entreprise'); 
-
+        $contacts = Contact::all();
         $contact = $projet->contact;
         $entreprise = $contact ? $contact->entreprise : null;
-
+        $entreprises = Entreprise::all();
         $intervenants = Intervenants::all();
-        return view('projets.edit', compact('projet','intervenants'));
+
+        return view('projets.edit', compact('projet','intervenants','contacts','entreprises'));
     }
 
     /**
@@ -113,7 +115,6 @@ class ProjetsController extends Controller
      */
     public function update(Request $request, Projet $projet)
     {
-
         $projet = Projet::find($request->hidden_id);
         $projet->nature = $request->nature;
         $projet->theme = $request->theme;
@@ -124,6 +125,10 @@ class ProjetsController extends Controller
         $projet->description = $request->description;
         $projet->contact_id = $request->contact_id;
         $projet->url_gestion_administrative = $request->url_gestion_administrative;
+        $projet->entreprise_id = $request->entreprise_id;
+        $projet->nom_du_projet = $request->nom_du_projet;
+
+        $projet->intervenants()->sync($request->Intervenant_id);
         
         $projet->save();
         return redirect()->route('projets.index')->with('success', 'Le Projet a été mis à jour');

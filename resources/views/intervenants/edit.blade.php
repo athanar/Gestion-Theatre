@@ -4,63 +4,68 @@
 <div class="card">
 	<div class="card-header">Modifier l'intervenant {{ $intervenant->nom }} {{ $intervenant->prenom }}</div>
 	<div class="card-body">
-		<form action="{{ route('intervenants.update', $intervenant->id) }}" method="POST">
+		<form action="{{ route('intervenants.update', $intervenant->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="form-group">
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" class="form-control" value="{{ $intervenant->nom }}" required>
-            </div>
-            <div class="form-group">
-                <label for="adresse">Prénom</label>
-                <input type="text" name="prenom" class="form-control" value="{{ $intervenant->prenom }}" required>
-            </div>
-            <div class="form-group">
-                <label for="ville">Adresse</label>
-                <input type="text" name="adresse" class="form-control" value="{{ $intervenant->adresse }}" required>
-            </div>
-            <div class="form-group">
-                <label for="ville">Date de naissance</label>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                <input type="date" class="col-sm-4 form-control" id="date_naissance" value="{{ $intervenant->date_naissance }}" name="date_naissance" required>
-            </div>
-            <div class="form-group">
-                <label for="groupe">Téléphone</label>
-                <input type="text" name="telephone" class="form-control" value="{{ $intervenant->telephone }}" required>
-            </div>
-            <div class="form-group">
-                <label for="groupe">Email</label>
-                <input type="text" name="email" class="form-control" value="{{ $intervenant->email }}" required>
+            <h3 class="mb-4">Informations de base</h3>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" class="form-control" value="{{ $intervenant->nom }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="adresse">Prénom</label>
+                    <input type="text" name="prenom" class="form-control" value="{{ $intervenant->prenom }}" required>    
+                </div>
             </div>
 
-            <div class="row">
-                <div class="col">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="ville">Adresse</label>
+                    <input type="text" name="adresse" class="form-control" value="{{ $intervenant->adresse }}" required>    
+                </div>
+                <div class="col-md-6">
+                    <label for="ville">Date de naissance</label>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type="date" class="col-sm-4 form-control" id="date_naissance" value="{{ $intervenant->date_naissance }}" name="date_naissance" required>    
+                </div>
+            </div>   
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="groupe">Téléphone</label>
+                    <input type="text" name="telephone" class="form-control" value="{{ $intervenant->telephone }}" required>    
+                </div>
+                <div class="col-md-6">
+                    <label for="groupe">Email</label>
+                    <input type="text" name="email" class="form-control" value="{{ $intervenant->email }}" required>    
+                </div>
+            </div>
+           
+            <h3 class="mb-4 mt-4">Spécificité</h3>
+            <div class="form-group row">
+                <div class="col-md-6">
                     <label class="col-sm-4 col-label-form" for="num_secu">Numéro Sécu</label>
                     <input type="number" class="form-control" id="num_secu" name="num_secu" value="{{ $intervenant->num_secu }}" placeholder="Num. Sécu" required>
                 </div>
-                <div class="col">
+                <div class="col-md-6">
                     <label class="col-sm-6 col-label-form" for="num_conges_spectacles">Numéro Congés Spectacle</label>
                     <input type="number" class="form-control" id="num_conges_spectacles" name="num_conges_spectacles" value="{{ $intervenant->num_conges_spectacles }}" placeholder="num_conges_spectacles" required>
                 </div>
             </div>
-            
-            <br/>
-            <div class="card-header text-center">Spécificité</div>
-<br/>
-            <div class="row">
-                <div class="col">
-                    <label class="col-sm-2 col-label-form" for="statut">Statut</label>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label class="col-sm-4 col-label-form" for="statut">Statut</label>
                     <select name="statut" id="statut"  class="form-control">
                         <option value="comédien" name="statut[]" {{ $intervenant->statut == 'comédien' ? 'selected' : '' }} name="">Comédien</option>
                         <option value="intermittent" name="statut[]" {{ $intervenant->statut == 'intermittent' ? 'selected' : '' }} >Intermittent</option>
                         <option value="auto-entrepreneur" name="statut[]" {{ $intervenant->statut == 'auto-entrepreneur' ? 'selected' : '' }} >Auto-entrepreneur</option>
-                    </select>
+                    </select>    
                 </div>
-
-                 <div class="col">
-                    <label class="col-sm-2 col-label-form" for="langues[]">Profession</label>
+                <div class="col-md-6">
+                    <label class="col-sm-4 col-label-form" for="langues[]">Profession</label>
                     <select name="statut_choix[]" id="statut_choix"  class="form-control" multiple>
                         <option value="scenariste"  {{ in_array('scenariste', explode(',', $intervenant->statut_choix)) ? 'selected' : '' }}> Scénariste</option>
                         <option value="comedien"  {{ in_array('comedien', explode(',', $intervenant->statut_choix)) ? 'selected' : '' }}> Comédien</option>
@@ -88,34 +93,48 @@
                 </div>
             </div>
            
-            <div class="row">
+            <h3 class="mb-4 mt-4">Commentaire</h3>
+            <div class="form-group row">
                 <label for="comment">Commentaire</label>
                 <textarea class="form-control" id="commentaire" name="commentaire" id="commentaire" rows="3">{{ $intervenant->commentaire}}</textarea>
             </div>
 
-            <div class="row">
+            <h3 class="mb-4 mt-4">Documents</h3>
+            <div class="form-group row">>
                 <div class="col">
                     <label class="col-sm-2 col-label-form" for="photo">Photo</label>
                     <input type="file" class="form-control" name="photo" id="photo" placeholder="Photo">
+                    @if($intervenant->photo)
+                        <p>Photo actuelle: {{ $intervenant->photo }}</p>
+                    @endif
                 </div>
                 <div class="col">
                     <label class="col-sm-2 col-label-form" for="cv">CV</label>
                     <input type="file" class="form-control" name="cv" id="cv" placeholder="CV">
+                    @if($intervenant->cv)
+                        <p>CV actuel: {{ $intervenant->cv }}</p>
+                    @endif
                 </div>
             </div>
 
-            <div class="row">
+            <div class="form-group row">>
                 <div class="col">
                     <label class="col-sm-2 col-label-form" for="cni">CNI</label>
                     <input type="file" class="form-control" name="cni" id="cni" placeholder="Photo">
+                    @if($intervenant->cn)
+                        <p>CNI actuel: {{ $intervenant->cni }}</p>
+                    @endif
                 </div>
                 <div class="col">
                     <label class="col-sm-2 col-label-form" for="file">Pièce jointe</label>
                     <input type="file" class="form-control" name="file" id="file" placeholder="file">
+                    @if($intervenant->file)
+                        <p>Fichier actuel: {{ $intervenant->file }}</p>
+                    @endif
                 </div>
             </div>
 
-            <div class="row">
+            <div class="form-group row">>
                 <label class="custom-file-label" for="chooseFile">Projets</label>
             </div>
 

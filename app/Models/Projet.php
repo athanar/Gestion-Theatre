@@ -36,15 +36,21 @@ class Projet extends Model
     {
         return $this->belongsTo(Contact::class);
     }
-    public function show($id)
-{
-    $projet = Projet::with('contact.entreprise')->find($id);
-    $contact = $projet->contact;
-    $entreprise = $contact ? $contact->entreprise : null;
 
-    $intervenants = $projet->intervenants;
-    return view('projets.show', compact('projet','intervenants'));
-}
+    public function entreprise()
+    {
+        return $this->belongsTo(Entreprise::class);
+    }
+    
+    public function show($id)
+    {
+        $projet = Projet::with('contact.entreprise')->find($id);
+        $contact = $projet->contact;
+        $entreprise = $contact ? $contact->entreprise : null;
+
+        $intervenants = $projet->intervenants;
+        return view('projets.show', compact('projet','intervenants'));
+    }
 
 
 }

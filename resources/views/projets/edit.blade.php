@@ -39,25 +39,42 @@
                 <label for="nature">Description</label>
                 <input type="text" name="description" class="form-control" value="{{ $projet->description }}">
             </div>
-               
             <div class="form-group">
                 <label for="secteur_activite">List des intervenants (choix multiple)</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="Intervenant_id" name="Intervenant_id[]" multiple required>
                         @foreach($intervenants as $intervenant)
-                            <option value="{{ $intervenant->id }}" @if($projet->intervenant_id=== $intervenant->id) selected='selected' @endif>{{ $intervenant->nom }} {{ $intervenant->prenom }}</option>
+                            <option value="{{ $intervenant->id }}" @if($projet->intervenants->contains($intervenant->id)) selected='selected' @endif>{{ $intervenant->nom }} {{ $intervenant->prenom }} </option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="comment">Commentaire</label>
-                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+                <label for="secteur_activite">Contact</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="contact_id" name="contact_id" required>
+                        @foreach($contacts as $contact)
+                            <option value="{{ $contact->id }}" @if($projet->contact->id === $contact->id )) selected @endif>{{ $contact->nom }} {{ $contact->prenoms }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
+            <div class="form-group">
+                <label for="secteur_activite">Entreprise</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="entreprise_id" name="entreprise_id" required>
+                        @foreach($entreprises as $entreprise)
+                            <option value="{{ $entreprise->id }}" @if($projet->entreprise === $entreprise->id )) selected @endif>{{ $entreprise->raison_sociale }} </option>  
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <div class="text-center">
 				<input type="hidden" name="hidden_id" value="{{ $projet->id }}" />
 				<input type="submit" class="btn btn-primary" value="Valider les modifications" />
 			</div>	
+            
         </form>      
 	</div>
 </div>
