@@ -50,6 +50,7 @@
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
+                    <li>23/05/23 : Ajout module de recherche (en cours)</li>
                     <li>21/05/23 : Style, Pièces jointes, </li>
                     <li>20/05/23 : Modification projet</li>
                     <li>19/05/23 : Ajout lien entreprise dans la page projet</li>
@@ -68,7 +69,15 @@
             <div class="card-body">
                 <h4>RAF</h4>
                 <ul>
+                    <li>Un champ de recherche salarié (par nom, prénom) afin de sélectionner le salarié </li>
+                    <li>A chaque comédien, il faut pouvoir indiquer un montant de rémunération qui puisse être visible (chaque comédien n’est pas payé le même montant en fonction de son rôle) + type de rémunération (cachet / facture)</li>
+                    <li>Un champ « date » pour renseigner la date a laquelle le projet aura lieu</li>      
+                    <li>Un champ « prix de vente »</li>
+                    <li>Un champ « budget » dans lequel on intègre le calcul global des recrutements comme indiqué précédemment</li>
+                    <li>Un champ « détail budget » qui puisse différentier le type de budget en reportant les données en fonction de la case cochée)</li>
+                    <li>Un champ « commentaire » dans lequel on peut rajouter des données et sauvegarder, les commentaires doivent apparaitre dans l’ordre de rédaction</li>
                     <li>Sur page de garde, rajouter fonction recherche par champ sémantique </li>
+                    <li>Rajouter un statut par projet : Validé / en cours / perdu</li>
                     <li>Accès admin</li>
                 </ul>
             </div>

@@ -29,7 +29,7 @@ Route::resource('projets', ProjetsController::class);
 Route::get('entreprise/{entreprise}/projets/selection', 'App\Http\Controllers\EntrepriseController@showProjetSelection')->name('entreprise.showProjetSelection');
 Route::post('entreprise/{entreprise}/projets/associate', 'App\Http\Controllers\EntrepriseController@associateProjets')->name('entreprise.associateProjets');
 
-Route::get('/search', 'SearchController@search')->name('search');
+Route::get('/search', 'App\Http\Controllers\SearchController@search')->name('search');
 
 
 Route::get('/', function () {
