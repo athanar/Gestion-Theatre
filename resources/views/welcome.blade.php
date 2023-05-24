@@ -42,7 +42,7 @@
         </div>
 
         <form action="{{ route('search') }}" method="GET" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Recherche" name="query">
+            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher par nom de contact, projet, client, intervenants ou raison sociale d'entreprises" aria-label="Rechercher" name="query">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
         </form>        
         
@@ -50,6 +50,7 @@
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
+                    <li>24/05/23 : Ajout module de recherche (terminé)</li>
                     <li>23/05/23 : Ajout module de recherche (en cours)</li>
                     <li>21/05/23 : Style, Pièces jointes, </li>
                     <li>20/05/23 : Modification projet</li>
