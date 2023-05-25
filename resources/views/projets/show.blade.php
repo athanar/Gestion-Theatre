@@ -36,6 +36,12 @@
 				{{ $projet->date_projet}}
 			</div>
 		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 col-label-form"><b>Statut</b></label>
+			<div class="col-sm-10">
+                {{ $projet->statut}}
+			</div>
+		</div>
         <div class="row mb-3">
 			<label class="col-sm-2 col-label-form"><b>Lieu</b></label>
 			<div class="col-sm-10">

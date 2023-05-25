@@ -50,6 +50,7 @@
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
+                    <li>25/05/23 : Rajouter un statut par projet : Validé / en cours / perdu</li>
                     <li>24/05/23 : Ajout module de recherche (terminé)</li>
                     <li>23/05/23 : Ajout module de recherche (en cours)</li>
                     <li>21/05/23 : Style, Pièces jointes, </li>
@@ -78,7 +79,6 @@
                     <li>Un champ « détail budget » qui puisse différentier le type de budget en reportant les données en fonction de la case cochée)</li>
                     <li>Un champ « commentaire » dans lequel on peut rajouter des données et sauvegarder, les commentaires doivent apparaitre dans l’ordre de rédaction</li>
                     <li>Sur page de garde, rajouter fonction recherche par champ sémantique </li>
-                    <li>Rajouter un statut par projet : Validé / en cours / perdu</li>
                     <li>Accès admin</li>
                 </ul>
             </div>

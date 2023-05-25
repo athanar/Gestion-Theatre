@@ -65,6 +65,7 @@ class ProjetsController extends Controller
         $projet->description = $request->description;
         $projet->contact_id = $request->contact_id;
         $projet->url_gestion_administrative = $request->url_gestion_administrative;
+        $projet->statut = $request->statut;
         
         $projet->save();
 
@@ -127,6 +128,7 @@ class ProjetsController extends Controller
         $projet->url_gestion_administrative = $request->url_gestion_administrative;
         $projet->entreprise_id = $request->entreprise_id;
         $projet->nom_du_projet = $request->nom_du_projet;
+        $projet->statut = $request->statut;
 
         $projet->intervenants()->sync($request->Intervenant_id);
         

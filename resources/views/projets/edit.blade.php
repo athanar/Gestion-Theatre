@@ -28,6 +28,14 @@
                 <input type="text" name="lieu" class="form-control" value="{{ $projet->lieu }}">
             </div>
             <div class="form-group">
+                <label for="statut">Statut</label>
+                <select name="statut">
+                    <option value="Validé">Validé</option>
+                    <option value="en cours">En cours</option>
+                    <option value="perdu">Perdu</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="nature">Coût Total</label>
                 <input type="text" name="prix_projet" class="form-control" value="{{ $projet->prix_projet }}">
             </div>

@@ -22,6 +22,7 @@ class Projet extends Model
         'description',
         'contact_id',
         'url_gestion_administrative',
+        'statut'
     ];
 
     public function intervenants() {
