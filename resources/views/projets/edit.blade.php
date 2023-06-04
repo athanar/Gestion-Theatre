@@ -60,6 +60,37 @@
             <div class="form-group">
                 <label for="secteur_activite">Contact</label>
                 <div class="col-sm-10">
+                    <input type="text" id="search-input" placeholder="Recherche...">
+
+                    <div id="results">
+                    <!-- Les résultats de la recherche seront affichés ici -->
+                    </div>
+
+                    <script>
+                    document.getElementById('search-input').addEventListener('keyup', function() {
+                        fetch('/search_contacts?query=' + this.value)
+                        .then(response => response.json())
+                        .then(contacts => {
+                            let html = '';
+                            contacts.forEach(contact => {
+                                html += `<p data-id="${contact.id}">${contact.nom} ${contact.prenom}</p>`;
+                             });
+                            const resultsDiv = document.getElementById('results');
+                            resultsDiv.innerHTML = html;
+
+                            // Ajoutez un gestionnaire d'événements click à chaque élément de contact
+                            resultsDiv.querySelectorAll('p').forEach(contactEl => {
+                                contactEl.addEventListener('click', function() {
+                                    const contactId = this.dataset.id;
+                                    document.getElementById('contact_id').value = contactId;
+                                });
+                            });
+                        });
+                    });
+                    </script>			
+
+                    <!-- search_results.blade.php -->
+
                     <select class="form-control" id="contact_id" name="contact_id" required>
                         @foreach($contacts as $contact)
                             <option value="{{ $contact->id }}" @if($projet->contact->id === $contact->id )) selected @endif>{{ $contact->nom }} {{ $contact->prenoms }}</option>

@@ -50,6 +50,7 @@
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
+                    <li>04/06/23 : Un champ de recherche salarié (par nom, prénom) afin de sélectionner le salarié</li>
                     <li>25/05/23 : Rajouter un statut par projet : Validé / en cours / perdu</li>
                     <li>24/05/23 : Ajout module de recherche (terminé)</li>
                     <li>23/05/23 : Ajout module de recherche (en cours)</li>
@@ -71,7 +72,6 @@
             <div class="card-body">
                 <h4>RAF</h4>
                 <ul>
-                    <li>Un champ de recherche salarié (par nom, prénom) afin de sélectionner le salarié </li>
                     <li>A chaque comédien, il faut pouvoir indiquer un montant de rémunération qui puisse être visible (chaque comédien n’est pas payé le même montant en fonction de son rôle) + type de rémunération (cachet / facture)</li>
                     <li>Un champ « date » pour renseigner la date a laquelle le projet aura lieu</li>      
                     <li>Un champ « prix de vente »</li>

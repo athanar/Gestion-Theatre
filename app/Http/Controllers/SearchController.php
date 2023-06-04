@@ -11,20 +11,31 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function search(Request $request)
-{
-    $query = $request->input('query');
+    {
+        $query = $request->input('query');
 
-    $projets = Projet::where('nom_du_projet', 'LIKE', "%$query%")->get();
-    $entreprise = Entreprise::where('raison_sociale', 'LIKE', "%$query%")->get();
-    $contacts = Contact::where('nom', 'LIKE', "%$query%")->get();
-    $intervenants = Intervenants::where('nom', 'LIKE', "%$query%")->get();
+        $projets = Projet::where('nom_du_projet', 'LIKE', "%$query%")->get();
+        $entreprise = Entreprise::where('raison_sociale', 'LIKE', "%$query%")->get();
+        $contacts = Contact::where('nom', 'LIKE', "%$query%")->get();
+        $intervenants = Intervenants::where('nom', 'LIKE', "%$query%")->get();
 
-    return view('search-results')->with([
-        'projets' => $projets,
-        'entreprise' => $entreprise,
-        'contacts' => $contacts,
-        'intervenants' => $intervenants,
-    ]);
-}
+        return view('search-results')->with([
+            'projets' => $projets,
+            'entreprise' => $entreprise,
+            'contacts' => $contacts,
+            'intervenants' => $intervenants,
+        ]);
+    }
+
+    public function search_contacts(Request $request)
+    {
+        $query = $request->input('query');
+
+        $contacts = Contact::where('nom', 'like', "%{$query}%")
+                        ->orWhere('prenom', 'like', "%{$query}%")
+                        ->get();
+
+        return response()->json($contacts);
+    }
 
 }
