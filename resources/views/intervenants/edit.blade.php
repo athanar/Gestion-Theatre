@@ -64,6 +64,24 @@
                         <option value="auto-entrepreneur" name="statut[]" {{ $intervenant->statut == 'auto-entrepreneur' ? 'selected' : '' }} >Auto-entrepreneur</option>
                     </select>    
                 </div>
+
+
+                @foreach($roles as $role)
+                <div class="form-group">
+                    <label for="montant_{{ $role }}">Montant pour le rôle {{ $role }}</label>
+                    <input type="text" id="montant_{{ $role }}" name="montants[{{ $role }}]" class="form-control" value="{{ $intervenant->remunerations->where('role', $role)->first()->montant ?? '' }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="type_remuneration_{{ $role }}">Type de rémunération pour le rôle {{ $role }}</label>
+                    <select id="type_remuneration_{{ $role }}" name="types_remuneration[{{ $role }}]" class="form-control">
+                        <option value="">Sélectionnez...</option>
+                        <option value="cachet" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'cachet') selected @endif>Cachet</option>
+                        <option value="facture" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'facture') selected @endif>Facture</option>
+                    </select>
+                </div>
+                @endforeach
+
                 <div class="col-md-6">
                     <label class="col-sm-4 col-label-form" for="langues[]">Profession</label>
                     <select name="statut_choix[]" id="statut_choix"  class="form-control" multiple>

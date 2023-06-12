@@ -55,4 +55,9 @@ class Intervenants extends Model
         return Storage::url($value);
     }
 
+    public function remunerations()
+    {
+        return $this->hasMany(Remuneration::class);
+    }
+
 }

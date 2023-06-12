@@ -89,10 +89,11 @@ class IntervenantsController extends Controller
      */
     public function edit($id)
     {
-        return view('intervenants.edit', ['intervenant' => Intervenants::findOrFail($id)]);
+        $roles = ['scénariste', 'comedien', 'formateur','impro','chanteur','realisateur','monteur','photographe','musique'];
+        return view('intervenants.edit', ['intervenant' => Intervenants::findOrFail($id), 'roles' => $roles]);
     }
 
-    /**
+    /**s
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
