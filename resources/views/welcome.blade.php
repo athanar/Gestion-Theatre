@@ -50,7 +50,7 @@
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
-                    <li>12/06/23 : Ajout rémunération (en cours), champ date, prix de vente, commentaire</li>
+                    <li>20/06/23 : Ajout rémunération (en cours), champ date, prix de vente, commentaire</li>
                     <li>12/06/23 : Ajout rémunération (en cours)</li>
                     <li>04/06/23 : Un champ de recherche salarié (par nom, prénom) afin de sélectionner le salarié</li>
                     <li>25/05/23 : Rajouter un statut par projet : Validé / en cours / perdu</li>
