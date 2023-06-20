@@ -73,14 +73,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="type_remuneration_{{ $role }}">Type de rémunération pour le rôle {{ $role }}</label>
-                    <select id="type_remuneration_{{ $role }}" name="types_remuneration[{{ $role }}]" class="form-control">
-                        <option value="">Sélectionnez...</option>
-                        <option value="cachet" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'cachet') selected @endif>Cachet</option>
-                        <option value="facture" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'facture') selected @endif>Facture</option>
-                    </select>
+                    <label>Type de rémunération pour le rôle {{ $role }}</label><br>
+                
+                    <input type="radio" id="type_remuneration_cachet_{{ $role }}" name="types_remuneration[{{ $role }}]" value="cachet" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'cachet') checked @endif>
+                    <label for="type_remuneration_cachet_{{ $role }}">Cachet</label><br>
+                
+                    <input type="radio" id="type_remuneration_facture_{{ $role }}" name="types_remuneration[{{ $role }}]" value="facture" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'facture') checked @endif>
+                    <label for="type_remuneration_facture_{{ $role }}">Facture</label>
                 </div>
                 @endforeach
+                
 
                 <div class="col-md-6">
                     <label class="col-sm-4 col-label-form" for="langues[]">Profession</label>

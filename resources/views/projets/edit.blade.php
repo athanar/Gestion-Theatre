@@ -35,6 +35,35 @@
                     <option value="perdu">Perdu</option>
                 </select>
             </div>
+
+            <!-- Champ date -->
+            <div class="form-group">
+                <label for="date">Date du projet</label>
+                <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $projet->date) }}">
+            </div>
+
+            <!-- Champ prix de vente -->
+            <div class="form-group">
+                <label for="prix_de_vente">Prix de vente</label>
+                <input type="number" step="0.01" class="form-control" id="prix_de_vente" name="prix_de_vente" value="{{ old('prix_de_vente', $projet->prix_de_vente) }}">
+            </div>
+
+            <!-- Champ commentaire -->
+            <div class="form-group">
+                <label for="commentaire">Commentaire</label>
+                <textarea class="form-control" id="commentaire" name="commentaire">{{ old('commentaire') }}</textarea>
+            </div>
+           
+            @if($projet->commentaires)
+                <!-- Les commentaires existants -->
+                @foreach ($projet->commentaires as $commentaire)
+                    <div class="commentaire">
+                        <p>{{ $commentaire->texte }}</p>
+                        <p>{{ $commentaire->date }}</p>
+                    </div>
+                @endforeach
+            @endif
+
             <div class="form-group">
                 <label for="nature">Coût Total</label>
                 <input type="text" name="prix_projet" class="form-control" value="{{ $projet->prix_projet }}">

@@ -42,6 +42,11 @@ class Projet extends Model
     {
         return $this->belongsTo(Entreprise::class);
     }
+
+    public function commentaires()
+    {
+        return $this->hasMany('App\Models\Commentaires');
+    }
     
     public function show($id)
     {

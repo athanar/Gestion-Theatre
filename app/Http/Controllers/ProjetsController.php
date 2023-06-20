@@ -96,7 +96,7 @@ class ProjetsController extends Controller
      */
     public function edit($id)
     {
-        $projet = Projet::find($id);
+        $projet = Projet::with('commentaires')->find($id);
         $projet->load('contact.entreprise'); 
         $contacts = Contact::all();
         $contact = $projet->contact;
@@ -129,6 +129,9 @@ class ProjetsController extends Controller
         $projet->entreprise_id = $request->entreprise_id;
         $projet->nom_du_projet = $request->nom_du_projet;
         $projet->statut = $request->statut;
+        $projet->date = $request->date;
+        $projet->prix_de_vente = $request->prix_de_vente;
+        $projet->commentaire = $request->commentaire; 
 
         $projet->intervenants()->sync($request->Intervenant_id);
         
