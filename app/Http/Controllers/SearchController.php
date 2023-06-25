@@ -38,4 +38,15 @@ class SearchController extends Controller
         return response()->json($contacts);
     }
 
+    public function search_intervenants(Request $request)
+    {
+        $query = $request->input('query');
+
+        $intervenants = Intervenants::where('nom', 'like', "%{$query}%")
+                        ->orWhere('prenom', 'like', "%{$query}%")
+                        ->get();
+
+        return response()->json($intervenants);
+    }
+
 }

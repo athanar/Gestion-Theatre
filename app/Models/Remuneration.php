@@ -14,6 +14,7 @@ class Remuneration extends Model
 
     protected $fillable = [
         'intervenant_id',
+        'projet_id',
         'role',
         'montant',
         'type_remuneration'
@@ -21,6 +22,11 @@ class Remuneration extends Model
 
     public function intervenant()
     {
-        return $this->belongsTo(Intervenant::class);
+        return $this->belongsTo(Intervenants::class);
+    }
+
+    public function projet()
+    {
+        return $this->belongsTo(Projet::class);
     }
 }

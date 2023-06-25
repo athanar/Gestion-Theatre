@@ -50,6 +50,10 @@
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
+                    <li>25/06/23 : Ajout rémunération
+                        A chaque comédien, il faut pouvoir indiquer un montant de rémunération qui puisse être visible (chaque comédien n’est pas payé le même montant en fonction de son rôle) + type de rémunération (cachet / facture)</li>
+                        Un champ « détail budget » qui puisse différentier le type de budget en reportant les données en fonction de la case cochée)  
+                    </li>
                     <li>20/06/23 : Ajout rémunération (en cours), champ date, prix de vente, commentaire</li>
                     <li>12/06/23 : Ajout rémunération (en cours)</li>
                     <li>04/06/23 : Un champ de recherche salarié (par nom, prénom) afin de sélectionner le salarié</li>
@@ -74,8 +78,6 @@
             <div class="card-body">
                 <h4>RAF</h4>
                 <ul>
-                    <li>A chaque comédien, il faut pouvoir indiquer un montant de rémunération qui puisse être visible (chaque comédien n’est pas payé le même montant en fonction de son rôle) + type de rémunération (cachet / facture)</li>
-                    <li>Un champ « détail budget » qui puisse différentier le type de budget en reportant les données en fonction de la case cochée)</li>
                     <li>Sur page de garde, rajouter fonction recherche par champ sémantique </li>
                     <li>Accès admin</li>
                 </ul>

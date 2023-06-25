@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\Entreprise;
 use App\Models\Intervenants;
 use App\Models\Projet;
+use App\Models\Remuneration;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
@@ -82,7 +83,7 @@ class ProjetsController extends Controller
      */
     public function show($id)
     {
-        $projet = Projet::with('contact.entreprise')->find($id);
+        $projet = Projet::with(['contact.entreprise','intervenants'])->find($id);
 
         $intervenants = $projet->intervenants;
         return view('projets.show', compact('projet','intervenants'));
@@ -122,18 +123,35 @@ class ProjetsController extends Controller
         $projet->prix_par_intervenants = $request->prix_par_intervenants;
         $projet->date_projet = $request->date_projet;
         $projet->lieu = $request->lieu;
-        $projet->prix_projet = $request->prix_projet;
+        $projet->prix_de_vente = $request->prix_projet;
         $projet->description = $request->description;
         $projet->contact_id = $request->contact_id;
         $projet->url_gestion_administrative = $request->url_gestion_administrative;
         $projet->entreprise_id = $request->entreprise_id;
         $projet->nom_du_projet = $request->nom_du_projet;
         $projet->statut = $request->statut;
-        $projet->date = $request->date;
         $projet->prix_de_vente = $request->prix_de_vente;
-        $projet->commentaire = $request->commentaire; 
+       // $projet->commentaire = $request->commentaire; 
 
-        $projet->intervenants()->sync($request->Intervenant_id);
+       //montant des intervenants
+       // Récupérer les rémunérations et les types de rémunérations
+        $remunerations = $request->input('remuneration');
+        $typesRemuneration = $request->input('type_remuneration');
+    
+        // Parcourir les intervenants et enregistrer leurs informations
+        foreach ($remunerations as $intervenantId => $montant) {
+            $type = $typesRemuneration[$intervenantId];
+        
+            // Trouver ou créer la rémunération pour cet intervenant et ce projet
+            $remuneration = Remuneration::firstOrNew([
+                'projet_id' => $projet->id,
+                'intervenant_id' => $intervenantId
+            ]);
+
+            $remuneration->montant = $montant;
+            $remuneration->type = $type;
+            $remuneration->save();
+        }
         
         $projet->save();
         return redirect()->route('projets.index')->with('success', 'Le Projet a été mis à jour');

@@ -36,12 +36,6 @@
                 </select>
             </div>
 
-            <!-- Champ date -->
-            <div class="form-group">
-                <label for="date">Date du projet</label>
-                <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $projet->date) }}">
-            </div>
-
             <!-- Champ prix de vente -->
             <div class="form-group">
                 <label for="prix_de_vente">Prix de vente</label>
@@ -77,13 +71,60 @@
                 <input type="text" name="description" class="form-control" value="{{ $projet->description }}">
             </div>
             <div class="form-group">
-                <label for="secteur_activite">List des intervenants (choix multiple)</label>
+                <label for="secteur_activite">List des intervenants</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="Intervenant_id" name="Intervenant_id[]" multiple required>
-                        @foreach($intervenants as $intervenant)
-                            <option value="{{ $intervenant->id }}" @if($projet->intervenants->contains($intervenant->id)) selected='selected' @endif>{{ $intervenant->nom }} {{ $intervenant->prenom }} </option>
-                        @endforeach
-                    </select>
+                    <input type="text" id="search-input-intervenants" placeholder="Recherche...">
+
+                    <div id="results_intervenants">
+                    <!-- Les résultats de la recherche seront affichés ici -->
+                    </div>
+
+                    <script>
+                    document.getElementById('search-input-intervenants').addEventListener('keyup', function() {
+                        fetch('/search_intervenants?query=' + this.value)
+                        .then(response => response.json())
+                        .then(intervenants => {
+                            let html = '';
+                            intervenants.forEach(intervenant => {
+                                html += `<p data-id="${intervenant.id}">${intervenant.nom} ${intervenant.prenom}</p>`;
+                             });
+                            const resultsDiv = document.getElementById('results_intervenants');
+                            resultsDiv.innerHTML = html;
+
+                            // Ajoutez un gestionnaire d'événements click à chaque élément de contact
+                            resultsDiv.querySelectorAll('p').forEach(contactEl => {
+                                contactEl.addEventListener('click', function() {
+                                    const contactId = this.dataset.id;
+                                    const contactNom = this.textContent;
+                                    const selectedDiv = document.getElementById('selected_intervenants');
+
+                                    // Crée une nouvelle ligne avec les informations de l'intervenant
+                                    const newLine = document.createElement('div');
+                                    newLine.setAttribute('data-id', contactId);
+                                    newLine.innerHTML = `
+                                        <span>${contactNom}</span>
+                                        <input type="number" name="remuneration[${contactId}]" placeholder="Rémunération">
+                                        <label><input type="radio" name="type_remuneration[${contactId}]" value="facture"> Facture</label>
+                                        <label><input type="radio" name="type_remuneration[${contactId}]" value="cachet"> Cachet</label>
+                                        <button class="delete-button">Supprimer</button>
+                                    `;
+
+                                    // Ajoute la nouvelle ligne à la div
+                                    selectedDiv.appendChild(newLine);
+
+                                     // Ajoute un écouteur d'événements pour supprimer la ligne
+                                    newLine.querySelector('.delete-button').addEventListener('click', function() {
+                                        selectedDiv.removeChild(newLine);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                    </script>			
+
+                    <!-- search_results.blade.php -->
+                    <div id="selected_intervenants"></div>
+
                 </div>
             </div>
             <div class="form-group">

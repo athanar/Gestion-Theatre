@@ -26,12 +26,10 @@ class Projet extends Model
     ];
 
     public function intervenants() {
-        return $this->belongsToMany(Intervenants::class);
+        return $this->belongsToMany(Intervenants::class, 'remunerations', 'projet_id', 'intervenant_id')
+                ->withPivot('montant', 'type');
     }
 
-    public function projet() {
-        return $this->belongsTo(Projet::class);
-    }
 
     public function contact()
     {
@@ -48,14 +46,19 @@ class Projet extends Model
         return $this->hasMany('App\Models\Commentaires');
     }
     
+    public function remunerations()
+    {
+        return $this->hasMany(Remuneration::class);
+    }
+    
     public function show($id)
     {
-        $projet = Projet::with('contact.entreprise')->find($id);
+        $projet = Projet::with(['contact.entreprise' , 'intervenants','intervenants.remunerations'])->find($id);
         $contact = $projet->contact;
         $entreprise = $contact ? $contact->entreprise : null;
 
         $intervenants = $projet->intervenants;
-        return view('projets.show', compact('projet','intervenants'));
+        return view('projets.show', compact('projet', 'intervenants','entreprise'));
     }
 
 

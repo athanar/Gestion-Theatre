@@ -46,8 +46,9 @@ class Intervenants extends Model
         'musique' => 'boolean',
     ];
 
-    public function projets() {
-        return $this->belongsToMany(Projet::class);
+    public function projet() {
+        return $this->belongsToMany(Projet::class, 'remunerations', 'intervenant_id', 'projet_id')
+                ->withPivot('montant', 'type');
     }
 
     public function getFilePathAttribute($value)

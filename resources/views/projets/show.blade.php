@@ -85,11 +85,18 @@
 		</div>
 
 		<h4>Intervenants</h4>
-
+	
 		@if ($projet->intervenants != null && $projet->intervenants->count() > 0)
+		
 			<ul>
-				@foreach ($projet->intervenants as $intervenant)
-					<li><a href="{{ route('intervenants.show', $intervenant->id) }}">{{ $intervenant->nom }}  {{ $intervenant->prenom }}</a> </li>
+				@foreach ($projet->remunerations as $remuneration)
+					<div>
+						<a href="{{ route('intervenants.show', ['intervenant' => $remuneration->intervenant->id]) }}">
+							<span>{{ $remuneration->intervenant->nom }} {{ $remuneration->intervenant->prenom }}</span>
+						</a>
+						<span>{{ $remuneration->montant }}</span>
+						<span>{{ $remuneration->type }}</span>
+					</div>
 				@endforeach
 			</ul>
 		@else

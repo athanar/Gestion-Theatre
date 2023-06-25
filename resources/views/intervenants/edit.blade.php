@@ -65,25 +65,6 @@
                     </select>    
                 </div>
 
-
-                @foreach($roles as $role)
-                <div class="form-group">
-                    <label for="montant_{{ $role }}">Montant pour le rôle {{ $role }}</label>
-                    <input type="text" id="montant_{{ $role }}" name="montants[{{ $role }}]" class="form-control" value="{{ $intervenant->remunerations->where('role', $role)->first()->montant ?? '' }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Type de rémunération pour le rôle {{ $role }}</label><br>
-                
-                    <input type="radio" id="type_remuneration_cachet_{{ $role }}" name="types_remuneration[{{ $role }}]" value="cachet" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'cachet') checked @endif>
-                    <label for="type_remuneration_cachet_{{ $role }}">Cachet</label><br>
-                
-                    <input type="radio" id="type_remuneration_facture_{{ $role }}" name="types_remuneration[{{ $role }}]" value="facture" @if (($intervenant->remunerations->where('role', $role)->first()->type_remuneration ?? '') == 'facture') checked @endif>
-                    <label for="type_remuneration_facture_{{ $role }}">Facture</label>
-                </div>
-                @endforeach
-                
-
                 <div class="col-md-6">
                     <label class="col-sm-4 col-label-form" for="langues[]">Profession</label>
                     <select name="statut_choix[]" id="statut_choix"  class="form-control" multiple>

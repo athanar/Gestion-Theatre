@@ -31,6 +31,7 @@ Route::post('entreprise/{entreprise}/projets/associate', 'App\Http\Controllers\E
 
 Route::get('/search', 'App\Http\Controllers\SearchController@search')->name('search');
 Route::get('/search_contacts','App\Http\Controllers\SearchController@search_contacts')->name('search_contacts');
+Route::get('/search_intervenants','App\Http\Controllers\SearchController@search_intervenants')->name('search_intervenants');
 
 Route::post('/intervenants/{intervenant}/remunerations', [RemunerationController::class, 'store'])->name('remuneration.store');
 
