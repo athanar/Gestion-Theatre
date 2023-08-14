@@ -18,6 +18,7 @@
     <nav class="navbar navbar-light bg-light mb-3">
         <div class="container">
             <a class="navbar-brand" href="#"><b>Gestion Théâtre</b></a>
+            <a class="btn btn-primary" href="http://localhost:8000/admin/users">Dashboard</a>
         </div>
     </nav>
     
@@ -44,9 +45,9 @@
         <form action="{{ route('search') }}" method="GET" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher par nom de contact, projet, client, intervenants ou raison sociale d'entreprises" aria-label="Rechercher" name="query">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-        </form>        
+        </form>            
         
-        <div class="card mb-4">
+        <div class="card mb-4" style="display: none">
             <div class="card-body">
                 <h4>ChangeLog</h4>
                 <ul>
@@ -74,7 +75,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" style="display: none">
             <div class="card-body">
                 <h4>RAF</h4>
                 <ul>

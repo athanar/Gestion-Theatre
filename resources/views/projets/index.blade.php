@@ -21,6 +21,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Nom du projet</th>
                     <th>Nature</th>
                     <th>Thème</th>
                     <th>Date</th>
@@ -31,6 +32,7 @@
             <tbody>
                 @foreach($projets as $projet)
                     <tr>
+                        <td>{{ $projet->nom_du_projet }}</td>
                         <td>{{ $projet->nature }}</td>
                         <td>{{ $projet->theme }}</td>
                         <td>{{ $projet->date_projet }}</td>

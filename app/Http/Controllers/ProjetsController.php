@@ -31,8 +31,11 @@ class ProjetsController extends Controller
     public function create()
     {
         $contacts = Contact::all();
+        $intervenants = Intervenants::all();    
+        $entreprises = Entreprise::all();
         $intervenants = Intervenants::all();
-        return view('projets.create',compact('contacts'),compact('intervenants'));
+
+        return view('projets.create',compact('contacts'),compact('intervenants','contacts','entreprises'));
     }
 
     /**
@@ -46,27 +49,30 @@ class ProjetsController extends Controller
         $validatedData = $request->validate([
             'nature' => 'required|string|max:255',
             'theme' => 'required|string|max:255',
-            'prix_par_intervenants' => 'required',
             'date_projet' => 'required',
             'lieu' => 'required',
             'prix_projet' => 'required',
             'description' => 'required',
             'contact_id' => 'required',
-            'url_gestion_administrative' => 'required',
-            'intervenants' => 'required'
+            'url_gestion_administrative' => 'required'
         ]);
-
         $projet = new Projet();
         $projet->nature = $request->nature;
         $projet->theme = $request->theme;
         $projet->prix_par_intervenants = $request->prix_par_intervenants;
         $projet->date_projet = $request->date_projet;
         $projet->lieu = $request->lieu;
-        $projet->prix_projet = $request->prix_projet;
+        $projet->prix_de_vente = $request->prix_projet;
         $projet->description = $request->description;
         $projet->contact_id = $request->contact_id;
         $projet->url_gestion_administrative = $request->url_gestion_administrative;
         $projet->statut = $request->statut;
+        $projet->nom_du_projet = $request->nom_du_projet;
+        $projet->cout_total = $request->cout_total;
+        $projet->cout_salarial = $request->cout_salarial;
+        $projet->deplacement = $request->deplacement;
+        $projet->restauration = $request->restauration;
+        $projet->hebergement = $request->hebergement;
         
         $projet->save();
 
@@ -84,9 +90,11 @@ class ProjetsController extends Controller
     public function show($id)
     {
         $projet = Projet::with(['contact.entreprise','intervenants'])->find($id);
-
+        $contact = $projet->contact;
+        $entreprise = $contact ? $contact->entreprise : null;
+        $entreprises = Entreprise::all();
         $intervenants = $projet->intervenants;
-        return view('projets.show', compact('projet','intervenants'));
+        return view('projets.show', compact('projet','intervenants','entreprises','contact'));
     }
 
     /**
@@ -117,6 +125,7 @@ class ProjetsController extends Controller
      */
     public function update(Request $request, Projet $projet)
     {
+       // dd($request);
         $projet = Projet::find($request->hidden_id);
         $projet->nature = $request->nature;
         $projet->theme = $request->theme;
@@ -131,6 +140,12 @@ class ProjetsController extends Controller
         $projet->nom_du_projet = $request->nom_du_projet;
         $projet->statut = $request->statut;
         $projet->prix_de_vente = $request->prix_de_vente;
+        $projet->nom_du_projet = $request->nom_du_projet;
+        $projet->cout_total = $request->cout_total;
+        $projet->cout_salarial = $request->cout_salarial;
+        $projet->deplacement = $request->deplacement;
+        $projet->restauration = $request->restauration;
+        $projet->hebergement = $request->hebergement;
        // $projet->commentaire = $request->commentaire; 
 
        //montant des intervenants
