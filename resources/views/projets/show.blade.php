@@ -103,10 +103,6 @@
 			<p>Aucun intervenant pour ce projet.</p>
 		@endif
 	
-		Déplacement : <input type="number" name="deplacement" id="deplacement" placeholder="Déplacement" value="{{ $projet->deplacement}}">
-		Restauration  : <input type="number" name="restauration" id="restauration" placeholder="Restauration" value="0">
-		Hébergement : <input type="number" name="hebergement" id="hebergement" placeholder="Hébergement" value="0">
-	   
 		<div class="row mb-3">
 			<label class="col-sm-2 col-label-form"><b>Déplacement</b></label>
 			<div class="col-sm-10" name="deplacement" id="deplacement">
