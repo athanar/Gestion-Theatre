@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestion Théâtre</title>
+    <title>Gestion Théâtre Services</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
@@ -17,7 +17,7 @@
 <body>
     <div class="container mt-5">
         
-        <h1 class="text-primary mt-3 mb-4 text-center"><b>Gestion Théâtre</b></h1>
+        <h1 class="text-primary mt-3 mb-4 text-center"><b>Gestion Théâtre Services</b></h1>
         <div class="col col-md-6"> <a href="/" class="btn btn-primary btn-sm">Accueil</a></div>
         @yield('content')
         

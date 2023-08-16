@@ -106,7 +106,7 @@ class EntrepriseController extends Controller
     public function showProjetSelection($id)
     {
         $entreprise = Entreprise::findOrFail($id);
-        $projets = Projet::whereNull('entreprise_id')->get();
+        $projets = Projet::all();
         return view('entreprises.projet_selection', compact('entreprise', 'projets'));
     }
 
@@ -118,6 +118,6 @@ class EntrepriseController extends Controller
         // Associer les projets sélectionnés à l'entreprise
         Projet::whereIn('id', $projets_ids)->update(['entreprise_id' => $entreprise->id]);
 
-        return redirect()->route('entreprise.show', $entreprise->id);
+        return redirect()->route('entreprises.show', $entreprise->id);
     }
 }

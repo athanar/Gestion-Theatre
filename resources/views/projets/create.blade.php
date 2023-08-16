@@ -22,44 +22,44 @@
             @csrf
             <div class="form-group">
                 <label for="nom_du_projet">Nom</label>
-                <input type="text" name="nom_du_projet" class="form-control" value="">
+                <input type="text" name="nom_du_projet" class="form-control" value="{{old('nom_du_projet')}}" required>
             </div>
             <div class="form-group">
                 <label for="nature">Nature</label>
                 <select name="nature">
-                    <option value="formation">Formation</option>
-                    <option value="communications">Communication</option>
-                    <option value="team building">Team building</option>
+                    <option value="formation" {{ old('nature') == 'formation' ? 'selected' : '' }}>Formation</option>
+                    <option value="communications" {{ old('nature') == 'communications' ? 'selected' : '' }}>Communication</option>
+                    <option value="team building" {{ old('nature') == 'team building' ? 'selected' : '' }}>Team building</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="nature">Thème</label>
-                <input type="text" name="theme" class="form-control" value="">
+                <input type="text" name="theme" class="form-control" value="{{ old('theme') }}" required>
             </div>
             <div class="form-group">
                 <label for="nature">Date</label>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
-                <input type="date" class="col-sm-4 form-control" id="date_projet" value="" name="date_projet" required>    
+                <input type="date" class="col-sm-4 form-control" id="date_projet" value="{{old('date_projet')}}" name="date_projet" required>    
             </div>
             <div class="form-group">
                 <label for="nature">Lieu</label>
-                <input type="text" name="lieu" class="form-control" value="">
+                <input type="text" name="lieu" class="form-control" value="{{old('')}}" required>
             </div>
             <div class="form-group">
                 <label for="statut">Statut</label>
                 <select name="statut">
-                    <option value="Validé">Validé</option>
-                    <option value="en cours">En cours</option>
-                    <option value="perdu">Perdu</option>
+                    <option value="Validé" {{ old('statut') == 'Validé' ? 'selected' : '' }}>Validé</option>
+                    <option value="en cours" {{ old('statut') == 'en cours' ? 'selected' : '' }}>En cours</option>
+                    <option value="perdu" {{ old('statut') == 'perdu' ? 'selected' : '' }}>Perdu</option>
                 </select>
             </div>
 
             <!-- Champ prix de vente -->
             <div class="form-group">
                 <label for="prix_de_vente">Prix de vente</label>
-                <input type="number" step="0.01" class="form-control" id="prix_de_vente" name="prix_de_vente" value="">
+                <input type="number" step="0.01" class="form-control" id="prix_de_vente" name="prix_de_vente" value="{{old('prix_de_vente')}}" required>
             </div>
 
             <!-- Champ commentaire -->
@@ -70,15 +70,15 @@
 
             <div class="form-group">
                 <label for="nature">Coût Total</label>
-                <input type="text" name="prix_projet" class="form-control" value="">
+                <input type="text" name="prix_projet" class="form-control" value="{{old('prix_projet')}}" required>
             </div>
             <div class="form-group">
                 <label for="nature">URL Gestion Administrative</label>
-                <input type="text" name="url_gestion_administrative" class="form-control" value="">
+                <input type="text" name="url_gestion_administrative" class="form-control" value="{{old('url_gestion_administrative')}}" required>
             </div>
             <div class="form-group">
                 <label for="nature">Description</label>
-                <input type="text" name="description" class="form-control" value="">
+                <input type="text" name="description" class="form-control" value="{{old('description')}}">
             </div>
             <div class="form-group">
                 <label for="secteur_activite">Liste des intervenants</label>
@@ -114,13 +114,12 @@
                                     newLine.setAttribute('data-id', contactId);
                                     newLine.innerHTML = `
                                         <span>${contactNom}</span>
-                                        <input type="number" name="remuneration[${contactId}]" placeholder="Rémunération">
-                                        <label><input type="radio" name="type_remuneration[${contactId}]" value="facture"> Facture</label>
-                                        <label><input type="radio" name="type_remuneration[${contactId}]" value="cachet"> Cachet</label>
+                                        <input type="number" name="remuneration[${contactId}]" placeholder="Rémunération" value="{{ old('remuneration[${contactId}]')}}">
+                                        <label><input type="radio" name="type_remuneration[${contactId}]" value="facture" {{ old('type_remuneration[${contactId}]') == 'facture' ? 'checked' : '' }}> Facture</label>
+                                        <label><input type="radio" name="type_remuneration[${contactId}]" value="cachet {{ old('type_remuneration[${contactId}]') == 'cachet' ? 'checked' : '' }}"> Cachet</label>
                                         / Coût global: <span class="total_cost_${contactId}">0</span>
                                         <button class="delete-button">Supprimer</button>
                                     `;
-
 
                                     // Ajoute la nouvelle ligne à la div
                                     selectedDiv.appendChild(newLine);
@@ -199,9 +198,9 @@
                     <p>Coût salarial du projet: <span id="salaire_total">0</span></p>
                     <p>Coût global salarial du projet: <span id="total_cost">0</span></p>
 
-                    Déplacement : <input type="number" name="deplacement" id="deplacement" placeholder="Déplacement" value="0">
-                    Restauration  : <input type="number" name="restauration" id="restauration" placeholder="Restauration" value="0">
-                    Hébergement : <input type="number" name="hebergement" id="hebergement" placeholder="Hébergement" value="0">
+                    Déplacement : <input type="number" name="deplacement" id="deplacement" placeholder="Déplacement" value="{{ old('deplacement')}}">
+                    Restauration  : <input type="number" name="restauration" id="restauration" placeholder="Restauration" value="{{ old('restauration')}}">
+                    Hébergement : <input type="number" name="hebergement" id="hebergement" placeholder="Hébergement" value="{{ old('hebergement')}}">
                     <p>Total des frais du projet: <span name="total_frais_visuel" id="total_frais_visuel">0</span></p>
                     <p>Coût global du projet: <span name="cout_global_visuel" id="cout_global_visuel">0</span></p>
                     <input type="hidden" id="total_frais" name="total_frais" value="0">
@@ -261,7 +260,7 @@
                 <div class="col-sm-10">
                     <select class="form-control" id="entreprise_id" name="entreprise_id" required>
                         @foreach($entreprises as $entreprise)
-                            <option value="{{ $entreprise->id }}" >{{ $entreprise->raison_sociale }} </option>  
+                            <option value="{{ $entreprise->id }}" {{ old('entreprise_id') == $entreprise->id ? 'selected' : '' }}>{{ $entreprise->raison_sociale }}</option>
                         @endforeach
                     </select>
                 </div>

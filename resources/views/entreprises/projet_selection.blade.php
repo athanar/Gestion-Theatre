@@ -8,17 +8,16 @@
 
     <form action="{{ route('entreprise.associateProjets', $entreprise->id) }}" method="post">
         @csrf
-
-        <ul>
-        @foreach($projets as $projet)
-            <li>
-                <input type="checkbox" name="projets[]" id="projet-{{ $projet->id }}" value="{{ $projet->id }}">
-                <label for="projet-{{ $projet->id }}">{{ $projet->nom_du_projet }}</label>
-            </li>
-        @endforeach
+        <ul class="list-group">
+            @foreach($projets as $projet)
+                <li class="list-group-item">
+                    <input type="checkbox" name="projets[]" value="{{ $projet->id }}">
+                    {{ $projet->nom_du_projet }}
+                </li>
+            @endforeach
         </ul>
-
-        <button type="submit">Associer les projets sélectionnés</button>
+        <button type="submit" class="btn btn-primary mt-2">Associer les projets sélectionnés</button>
     </form>
+    
 </body>
 </html>

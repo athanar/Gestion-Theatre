@@ -47,6 +47,7 @@ class ProjetsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'nom_du_projet' => 'required|string|max:255',
             'nature' => 'required|string|max:255',
             'theme' => 'required|string|max:255',
             'date_projet' => 'required',

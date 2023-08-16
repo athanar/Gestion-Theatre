@@ -93,11 +93,11 @@
         <a href="{{ route('entreprise.showProjetSelection', $entreprise->id) }}" class="btn btn-primary btn-sm mb-3">Sélectionner des projets à associer</a>
         <ul class="list-group">
             @forelse($entreprise->projets as $projet)
-                <li class="list-group-item">{{ $projet->nom }}</li>
+                <li class="list-group-item">{{ $projet->nom_du_projet }}</li>
             @empty
-                <li class="list-group-item">Aucun projet</li>
+                <li class="list-group-item">Aucun projet associé à cette entreprise.</li>
             @endforelse
-        </ul>
+        </ul>        
 
     </div>
 </div>

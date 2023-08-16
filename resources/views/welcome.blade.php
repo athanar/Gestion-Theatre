@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestion Théâtre</title>
+    <title>Gestion Théâtre Services</title>
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body>
     <nav class="navbar navbar-light bg-light mb-3">
         <div class="container">
-            <a class="navbar-brand" href="#"><b>Gestion Théâtre</b></a>
+            <a class="navbar-brand" href="#"><b>Gestion Théâtre Services</b></a>
             <a class="btn btn-primary" href="http://localhost:8000/admin/users">Dashboard</a>
         </div>
     </nav>

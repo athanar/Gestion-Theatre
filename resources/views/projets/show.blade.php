@@ -42,23 +42,25 @@
                 {{ $projet->statut}}
 			</div>
 		</div>
-		<!-- Champ de date -->
+		<!--
+		
 		<div class="form-group">
 			<label>Date</label>
 			<p>{{ $projet->date }}</p>
 		</div>
 
-		<!-- Champ de prix de vente -->
+		
 		<div class="form-group">
 			<label>Prix de vente</label>
 			<p>{{ $projet->prix_de_vente }}</p>
 		</div>
 
-		<!-- Champ de commentaire -->
+	
 		<div class="form-group">
 			<label>Commentaire</label>
 			<p>{{ $projet->commentaire }}</p>
 		</div>
+		-->
         <div class="row mb-3">
 			<label class="col-sm-2 col-label-form"><b>Lieu</b></label>
 			<div class="col-sm-10">

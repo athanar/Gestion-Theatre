@@ -21,6 +21,6 @@ class Entreprise extends Model
 
     public function projets()
     {
-        return $this->hasMany(Projet::class);
+        return $this->hasMany(Projet::class, 'entreprise_id');
     }
 }

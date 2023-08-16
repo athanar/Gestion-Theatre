@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gestion Théâtre - Entreprises</title>
+    <title>Gestion Théâtre Services - Entreprises</title>
 </head>
 <body>
   
