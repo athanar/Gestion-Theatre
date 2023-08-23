@@ -30,7 +30,7 @@
                 
             </thead>
             <tbody>
-                @foreach($projets as $projet)
+                @forelse($projets as $projet)
                     <tr>
                         <td>{{ $projet->nom_du_projet }}</td>
                         <td>{{ $projet->nature }}</td>
@@ -47,7 +47,11 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="6">Aucun projet trouvé.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
