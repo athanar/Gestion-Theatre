@@ -54,6 +54,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
+
+    Route::get('projets/{projet}', 'ProjetsController@show')->name('projets.show');
+
 });
 
 Route::resource('entreprises', EntrepriseController::class);
