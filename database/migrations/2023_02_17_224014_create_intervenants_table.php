@@ -34,9 +34,9 @@ return new class extends Migration
                 $table->boolean('musique')->default(false);
                 $table->set('langues', ['français', 'anglais', 'italien', 'allemand', 'espagnol'])->nullable();
                 $table->text('commentaire')->nullable();
-                $table->json('pieces_jointes')->nullable();
+                $table->text('pieces_jointes')->nullable();
                 $table->string('photo')->nullable();
-                $table->json('projets')->nullable();
+                $table->text('projets')->nullable();
                 $table->timestamps();
         });
     }
