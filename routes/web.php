@@ -62,7 +62,6 @@ Route::resource('entreprises', EntrepriseController::class);
 Route::resource('contacts', ContactController::class);
 Route::resource('commentaires', CommentaireController::class);
 Route::resource('intervenants', IntervenantsController::class);
-Route::resource('projets', ProjetsController::class);
 Route::resource('projets', ProjetsController::class)->only([
     'index', 'create', 'store', 'edit', 'update', 'destroy'
 ]);
