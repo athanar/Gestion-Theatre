@@ -62,9 +62,7 @@ Route::resource('entreprises', EntrepriseController::class);
 Route::resource('contacts', ContactController::class);
 Route::resource('commentaires', CommentaireController::class);
 Route::resource('intervenants', IntervenantsController::class);
-Route::resource('projets', ProjetsController::class)->only([
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
-]);
 
+Route::resource('projets', ProjetsController::class); // Inclut toutes les méthodes CRUD
 
 require __DIR__.'/auth.php';
