@@ -13,7 +13,13 @@
             </div>
             <div class="form-group">
                 <label for="nature">Nature</label>
-                <input type="text" name="nature" class="form-control" value="{{ $projet->nature }}">
+                <select name="nature">
+
+                    <option value="formation" @if($projet->nature === 'formation' ) selected @endif >Formation</option>
+                    <option value="communication" @if($projet->nature === 'communication' ) selected @endif >Communication</option>
+                    <option value="team building" @if($projet->nature === 'team building' ) selected @endif >Team building</option>
+                    <option value="audiovisuel" @if($projet->nature === 'audiovisuel' ) selected @endif >Audiovisuel</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="nature">Thème</label>

@@ -159,4 +159,10 @@ class IntervenantsController extends Controller
         return response()->json($intervenants);
     }
 
+    protected $casts = [
+        // ...
+        'num_conges_spectacles' => 'string',
+        // ...
+    ];
+    
 }

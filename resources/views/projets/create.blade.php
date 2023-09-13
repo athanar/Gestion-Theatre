@@ -30,6 +30,7 @@
                     <option value="formation" {{ old('nature') == 'formation' ? 'selected' : '' }}>Formation</option>
                     <option value="communications" {{ old('nature') == 'communications' ? 'selected' : '' }}>Communication</option>
                     <option value="team building" {{ old('nature') == 'team building' ? 'selected' : '' }}>Team building</option>
+                    <option value="audiovisuel" {{ old('nature') == 'audiovisuel' ? 'selected' : '' }}>Audiovisuel</option>
                 </select>
             </div>
             <div class="form-group">
@@ -249,9 +250,7 @@
                     <!-- search_results.blade.php -->
 
                     <select class="form-control" id="contact_id" name="contact_id" required>
-                        @foreach($contacts as $contact)
-                            <option value="{{ $contact->id }}">{{ $contact->nom }} {{ $contact->prenoms }}</option>
-                        @endforeach
+                       
                     </select>
                 </div>
             </div>

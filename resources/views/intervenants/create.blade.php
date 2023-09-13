@@ -65,7 +65,7 @@
                 </div>
                 <div class="col">
                     <label class="col-sm-6 col-label-form" for="num_conges_spectacles">Numéro Congés Spectacle</label>
-                    <input type="number" class="form-control" id="num_conges_spectacles" name="num_conges_spectacles" placeholder="num_conges_spectacles" required>
+                    <input type="text" class="form-control" id="num_conges_spectacles" name="num_conges_spectacles" placeholder="num_conges_spectacles" required>
                 </div>
             </div>
 <br/>

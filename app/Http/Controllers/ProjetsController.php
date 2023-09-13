@@ -45,7 +45,7 @@ class ProjetsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $validatedData = $request->validate([
             'nom_du_projet' => 'required|string|max:255',
             'nature' => 'required|string|max:255',
@@ -126,7 +126,7 @@ class ProjetsController extends Controller
      */
     public function update(Request $request, Projet $projet)
     {
-       // dd($request);
+        //dd($request);
         $projet = Projet::find($request->hidden_id);
         $projet->nature = $request->nature;
         $projet->theme = $request->theme;
@@ -155,18 +155,20 @@ class ProjetsController extends Controller
         $typesRemuneration = $request->input('type_remuneration');
     
         // Parcourir les intervenants et enregistrer leurs informations
-        foreach ($remunerations as $intervenantId => $montant) {
-            $type = $typesRemuneration[$intervenantId];
-        
-            // Trouver ou créer la rémunération pour cet intervenant et ce projet
-            $remuneration = Remuneration::firstOrNew([
-                'projet_id' => $projet->id,
-                'intervenant_id' => $intervenantId
-            ]);
+        if ($remunerations !== null) {
+            foreach ($remunerations as $intervenantId => $montant) {
+                $type = $typesRemuneration[$intervenantId];
+            
+                // Trouver ou créer la rémunération pour cet intervenant et ce projet
+                $remuneration = Remuneration::firstOrNew([
+                    'projet_id' => $projet->id,
+                    'intervenant_id' => $intervenantId
+                ]);
 
-            $remuneration->montant = $montant;
-            $remuneration->type = $type;
-            $remuneration->save();
+                $remuneration->montant = $montant;
+                $remuneration->type = $type;
+                $remuneration->save();
+            }
         }
         
         $projet->save();
