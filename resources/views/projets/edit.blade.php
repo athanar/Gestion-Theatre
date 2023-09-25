@@ -1,6 +1,14 @@
 @extends('master')
 
 @section('content')
+
+<style>
+#results {
+    max-height: calc(1 * 1.5em); /* Suppose que chaque contact a une hauteur de 1.5em */
+    overflow-y: auto;
+}
+</style>
+
 <div class="card">
 	<div class="card-header">Modifier le projet <b> {{ $projet->nom_du_projet}}</b></div>
 	<div class="card-body">
@@ -216,7 +224,7 @@
                 <div class="col-sm-10">
                     <input type="text" id="search-input" placeholder="Recherche...">
 
-                    <div id="results">
+                    <div id="results" style="max-height: calc(3 * 1.5em); overflow-y: auto;">
                     <!-- Les résultats de la recherche seront affichés ici -->
                     </div>
 
