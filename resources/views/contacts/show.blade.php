@@ -8,6 +8,7 @@
     <div class="card-header bg-primary text-white">
         <div class="d-flex justify-content-between align-items-center">
             <h4>Détail du contact</h4>
+            <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Modifier</a>                         
             <a href="{{ route('contacts.index') }}" class="btn btn-primary btn-sm">Retour à la liste</a>
         </div>
     </div>
